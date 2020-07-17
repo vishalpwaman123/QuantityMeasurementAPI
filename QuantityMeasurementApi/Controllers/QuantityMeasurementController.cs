@@ -96,23 +96,23 @@ namespace QuantityMeasurementApi.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
-        public IActionResult GetQuantityById(int Id)
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteQuntityById(int Id)
         {
             try
             {
-                var result = quantityMeasurementBusiness.GetQuantityById(Id);
+                var result = quantityMeasurementBusiness.DeleteQuntityById(Id);
                 if (!result.Equals(null))
                 {
                     bool success = true;
-                    var message = "Data Found Successfully";
-                    return this.Ok(new { success, message, Data = result });
+                    var message = "Data Deleted Successfully";
+                    return this.Ok(new { success, message, data = result });
                 }
                 else
                 {
                     bool success = false;
-                    var message = "Data Not Found";
-                    return this.Ok(new { success, message, Data = result });
+                    var message = "Failed To Delete Data";
+                    return this.Ok(new { success, message, data = result });
                 }
             }
             catch (Exception e)
