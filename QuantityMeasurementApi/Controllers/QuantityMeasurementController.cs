@@ -96,23 +96,23 @@ namespace QuantityMeasurementApi.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Quantity>> GetAllQuantity()
+        [HttpGet("{Id}")]
+        public IActionResult GetQuantityById(int Id)
         {
             try
             {
-                var result = quantityMeasurementBusiness.GetAllQuantity();
+                var result = quantityMeasurementBusiness.GetQuantityById(Id);
                 if (!result.Equals(null))
                 {
                     bool success = true;
-                    var message = "Data is Found Sucessfully";
-                    return this.Ok(new { success, message, data = result });
+                    var message = "Data Found Successfully";
+                    return this.Ok(new { success, message, Data = result });
                 }
                 else
                 {
                     bool success = false;
-                    var message = "Sorry, Not able to Found Data";
-                    return this.NotFound(new { success, message, data = result });
+                    var message = "Data Not Found";
+                    return this.Ok(new { success, message, Data = result });
                 }
             }
             catch (Exception e)
@@ -121,7 +121,6 @@ namespace QuantityMeasurementApi.Controllers
                 return BadRequest(new { success, message = e.Message });
             }
         }
-
 
     }
 }
