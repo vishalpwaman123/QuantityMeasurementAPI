@@ -20,11 +20,19 @@ namespace BusinessLayer.Services
         {
             try
             {
+                if (quantity.MeasurementType == "")
+                {
+                    return null;
+                }
                 quantity.Result = UnitConversion(quantity);
 
                 if (quantity.Result > 0)
                 {
                     return quantityMeasurementRepository.Add(quantity);
+                }
+                else
+                {
+                    return null;
                 }
 
                 return quantity;
@@ -56,32 +64,36 @@ namespace BusinessLayer.Services
             Length length = new Length();
             Weight weight = new Weight();
             Volume volume = new Volume();
+            double result = 0.0;
 
             if (MeasurementType == "length")
             {
                 Length.Unit unit = length.SetUnitAndConvertLength(conversionType);
 
-                if (unit == Length.Unit.FeetToInch || unit == Length.Unit.YardToInch || unit == Length.Unit.CentimeterToInch)
+                if (unit == Length.Unit.FeetToInch || unit == Length.Unit.YardToInch || unit == Length.Unit.CentimeterToInch || unit.Equals(Length.Unit.Inch))
                 {
                     return length.ConvertLength(unit, value);
                 }
+                    return result;
             }
             else if (MeasurementType == "weight")
             {
                 Weight.Unit unit = weight.SetUnitAndConvertWeights(conversionType);
 
-                if (unit.Equals(Weight.Unit.GramsToKilogram) || unit.Equals(Weight.Unit.TonneToKilograms))
+                if (unit.Equals(Weight.Unit.GramsToKilogram) || unit.Equals(Weight.Unit.TonneToKilograms) || unit.Equals(Weight.Unit.kilogram))
                 {
                     return weight.ConvertWeigths(unit, value);
                 }
+                return result;
             }
             else if (MeasurementType == "volume")
             {
                 Volume.Unit unit = volume.SetUnitAndConvertVolume(conversionType);
-                if (unit.Equals(Volume.Unit.GallonToLitre) || unit.Equals(Volume.Unit.MiliLitreToLitre))
+                if (unit.Equals(Volume.Unit.GallonToLitre) || unit.Equals(Volume.Unit.MiliLitreToLitre) || unit.Equals(Volume.Unit.Litre))
                 {
                     return volume.ConvertValue(unit, value);
                 }
+                    return result;
             }
             else if (MeasurementType == "temperature")
             {
@@ -91,6 +103,8 @@ namespace BusinessLayer.Services
                 {
                     return temperature.ConvertTemperature(unit, value);
                 }
+                    return result;
+                
             }
 
             return value;

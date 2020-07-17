@@ -12,6 +12,7 @@ namespace BusinessLayer.Services
 
         public enum Unit
         {
+            Null,
             Gallon,
             Litre,
             GallonToLitre,
@@ -24,13 +25,17 @@ namespace BusinessLayer.Services
             {
                 return Unit.GallonToLitre;
             }
-
+            else
             if (operation == "MiliLitreToLitre")
             {
                 return Unit.MiliLitreToLitre;
             }
-
-            return Unit.Litre;
+            else
+            if (operation == "Litre")
+            {
+                return Unit.Litre;
+            }
+            return Unit.Null;
         }
 
         public double ConvertValue(Unit unit, double value)

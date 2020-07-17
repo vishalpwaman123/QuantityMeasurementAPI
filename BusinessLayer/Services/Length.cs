@@ -16,7 +16,7 @@ namespace BusinessLayer.Services
         }
 
         public enum Unit
-        {
+        {   Null,
             Inch,
             FeetToInch,
             YardToInch,
@@ -29,18 +29,21 @@ namespace BusinessLayer.Services
             {
                 return Unit.FeetToInch;
             }
-
+            else
             if (conversionType == "YardToInch")
             {
                 return Unit.YardToInch;
             }
-
+            else
             if (conversionType == "CentimeterToInch")
             {
                 return Unit.CentimeterToInch;
             }
-
-            return Unit.Inch;
+            else if (conversionType == "Inch")
+            {
+                return Unit.Inch;
+            }
+            return Unit.Null;
         }
 
         public double ConvertLength(Unit unit, double length)

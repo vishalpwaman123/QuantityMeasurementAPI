@@ -12,14 +12,13 @@ namespace QuantityMeasurementApi.Controllers
     {
         private QuantityMeasurementInterfaceBusiness quantityMeasurementBusiness;
 
-
         public QuantityMeasurementController(QuantityMeasurementInterfaceBusiness quantityMeasurementBusiness)
         {
             this.quantityMeasurementBusiness = quantityMeasurementBusiness;
         }
 
         [HttpPost]
-        public IActionResult Convert([FromBody] Quantity quantity)
+        public IActionResult ConvertToUnit([FromBody] Quantity quantity)
         {
             try
             {
@@ -43,6 +42,7 @@ namespace QuantityMeasurementApi.Controllers
                 return BadRequest(new { success, message = e.Message });
             }
         }
+
 
         [HttpGet]
         public ActionResult<IEnumerable<Quantity>> GetAllQuantity()
@@ -95,6 +95,7 @@ namespace QuantityMeasurementApi.Controllers
                 return BadRequest(new { success, message = e.Message });
             }
         }
+
 
         [HttpDelete("{Id}")]
         public IActionResult DeleteQuntityById(int Id)
@@ -176,7 +177,6 @@ namespace QuantityMeasurementApi.Controllers
             }
         }
 
-
         [HttpGet]
         [Route("compare/{Id}")]
         public IActionResult GetComparisonById(int Id)
@@ -230,6 +230,7 @@ namespace QuantityMeasurementApi.Controllers
                 return BadRequest(new { success, message = e.Message });
             }
         }
+
 
     }
 }

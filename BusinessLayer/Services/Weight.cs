@@ -10,7 +10,7 @@ namespace BusinessLayer.Services
         }
 
         public enum Unit
-        {
+        {   Null,
             kilogram,
             GramsToKilogram,
             TonneToKilograms
@@ -22,13 +22,17 @@ namespace BusinessLayer.Services
             {
                 return Unit.GramsToKilogram;
             }
-
+            else
             if (conversionType == "TonneToKilograms")
             {
                 return Unit.TonneToKilograms;
             }
-
-            return Unit.kilogram;
+            else
+            if (conversionType == "Kilograms")
+            {
+                return Unit.kilogram;
+            }
+            return Unit.Null;
         }
 
         public double ConvertWeigths(Unit unit, double weight)
@@ -54,5 +58,7 @@ namespace BusinessLayer.Services
                 throw e;
             }
         }
+
+
     }
 }

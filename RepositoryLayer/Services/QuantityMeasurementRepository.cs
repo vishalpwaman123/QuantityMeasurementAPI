@@ -27,6 +27,11 @@ namespace RepositoryLayer.Services
         {
             try
             { 
+                if (quantity == null )
+                {
+                    return quantity;
+                }
+
                 var result = dBContext.Quantities.FirstOrDefault(Data =>((Data.ConversionType == quantity.ConversionType) && (Data.Value == quantity.Value)));
                 if (result == null)
                 {
