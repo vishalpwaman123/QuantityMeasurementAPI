@@ -44,6 +44,32 @@ namespace QuantityMeasurementApi.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<Quantity>> GetAllQuantity()
+        {
+            try
+            {
+                var result = quantityMeasurementBusiness.GetAllQuantity();
+                if (!result.Equals(null))
+                {
+                    bool success = true;
+                    var message = "Data is Found Sucessfully";
+                    return this.Ok(new { success, message, data = result });
+                }
+                else
+                {
+                    bool success = false;
+                    var message = "Sorry, Not able to Found Data";
+                    return this.NotFound(new { success, message, data = result });
+                }
+            }
+            catch (Exception e)
+            {
+                bool success = false;
+                return BadRequest(new { success, message = e.Message });
+            }
+        }
+
 
     }
 }
