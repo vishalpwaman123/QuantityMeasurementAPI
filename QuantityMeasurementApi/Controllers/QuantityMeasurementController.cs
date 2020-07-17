@@ -70,6 +70,32 @@ namespace QuantityMeasurementApi.Controllers
             }
         }
 
+        [HttpGet("{Id}")]
+        public IActionResult GetQuantityById(int Id)
+        {
+            try
+            {
+                var result = quantityMeasurementBusiness.GetQuantityById(Id);
+                if (!result.Equals(null))
+                {
+                    bool success = true;
+                    var message = "Data Found Successfully";
+                    return this.Ok(new { success, message, Data = result });
+                }
+                else
+                {
+                    bool success = false;
+                    var message = "Data Not Found";
+                    return this.Ok(new { success, message, Data = result });
+                }
+            }
+            catch (Exception e)
+            {
+                bool success = false;
+                return BadRequest(new { success, message = e.Message });
+            }
+        }
+
 
     }
 }
