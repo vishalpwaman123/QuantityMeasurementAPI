@@ -1,35 +1,63 @@
-﻿using BusinessLayer.Interface;
-using BusinessLayer.Services;
-using CommanLayer;
-using CommanLayer.Model;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuantityMeasurementApi.Controllers;
-using RepositoryLayer.Interface;
-using RepositoryLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿// <copyright file="QuantityMeasurementCompareTest.cs" company="BridgeLab">
+//      Copyright (c) Company. All rights reserved.
+// </copyright>
+// <author>Vishal Waman</author>
 
 namespace QuantityMeasurementConvertTest
 {
+    using BusinessLayer.Interface;
+    using BusinessLayer.Services;
+    using CommanLayer;
+    using CommanLayer.Model;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using QuantityMeasurementApi.Controllers;
+    using RepositoryLayer.Interface;
+    using RepositoryLayer.Services;
+    using System;
+    using Xunit;
+
+    /// <summary>
+    /// Define Class
+    /// </summary>
     public class QuantityMeasurementCompareTest
     {
+        /// <summary>
+        /// Define QuantityMeasurementController instance
+        /// </summary>
+        private QuantityMeasurementController quantityMeasurementController;
 
-        QuantityMeasurementController quantityMeasurementController;
-        QuantityMeasurementInterfaceBusiness quantityMeasurementInterfaceBusiness;
-        QuantityMeasurementInterfaceRepository quantityMeasurementRepository;
+        /// <summary>
+        /// Define QuantityMeasurementInterfaceBusiness Instance
+        /// </summary>
+        private QuantityMeasurementInterfaceBusiness quantityMeasurementInterfaceBusiness;
 
+        /// <summary>
+        /// Define QuantityMeasurementInterfaceRepository Instance
+        /// </summary>
+        private QuantityMeasurementInterfaceRepository quantityMeasurementRepository;
+
+        /// <summary>
+        /// Define Temperary Database read Instance
+        /// </summary>
         public static DbContextOptions<ApplicationDbContext> Comparisons { get; }
 
+        /// <summary>
+        /// Define Database variable
+        /// </summary>
         public static string sqlConnectionString = "Data Source=DESKTOP-OF8D1IH;Initial Catalog=QuantityMeasurementDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
+        /// <summary>
+        /// Define static Function
+        /// </summary>
         static QuantityMeasurementCompareTest()
         {
             Comparisons = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(sqlConnectionString).Options;
         }
 
+        /// <summary>
+        /// Define Constructor
+        /// </summary>
         public QuantityMeasurementCompareTest()
         {
 
@@ -40,6 +68,9 @@ namespace QuantityMeasurementConvertTest
 
         }
 
+        /// <summary>
+        /// Test Case of Given 2 Feet To Inch And 24 Inch When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given2FeetToInchAnd24Inch_WhenCompared_ReturnsResult()
         {
@@ -62,6 +93,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 1 Yard To Inch And 2 Feet To Inch When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given1YardToInchAnd2FeetToInch_WhenCompared_ReturnsResult()
         {
@@ -84,6 +118,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 1 Yard To Inch And 36 Inch When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given1YardToInchAnd36Inch_WhenCompared_ReturnsResult()
         {
@@ -106,6 +143,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 14 Inch And 2 Feet To Inch When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given14InchAnd2FeetToInch_WhenCompared_ReturnsResult()
         {
@@ -128,6 +168,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 5 Centimeter To Inch Value And 2 Inch Value When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given5CentimeterToInchValueAnd2InchValue_WhenCompared_ReturnsResult()
         {
@@ -150,6 +193,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given Null And 2 Inch Value When Compared Returns Bad Result
+        /// </summary>
         [Fact]
         public void GivenNullAnd2InchValue_WhenCompared_ReturnsBadResult()
         {
@@ -172,6 +218,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 1 Gallon To Litre Value And 3 point 78 Litre Value When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given1GallonToLitreValueAnd3point78LitreValue_WhenCompared_ReturnsResult()
         {
@@ -194,6 +243,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 100 MiliLitre To Litre Value And 10 Litre Value When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given100MiliLitreToLitreValueAnd10LitreValue_WhenCompared_ReturnsResult()
         {
@@ -216,6 +268,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 10 Litre Value And 10 Litre Value When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given10LitreValueAnd10LitreValue_WhenCompared_ReturnsResult()
         {
@@ -238,6 +293,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given Null Value And 3 point 78 Litre Value When Compared Returns Bad Result
+        /// </summary>
         [Fact]
         public void GivenNullValueAnd3point78LitreValue_WhenCompared_ReturnsBadResult()
         {
@@ -260,6 +318,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 1000 Grams To Kilogram Value And 1 KiloGram When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given1000GramsToKilogramValueAnd1KiloGram_WhenCompared_ReturnsResult()
         {
@@ -282,6 +343,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 1 Tonne To Kilograms Value And 100 KiloGram When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given1TonneToKilogramsValueAnd100KiloGram_WhenCompared_ReturnsResult()
         {
@@ -304,6 +368,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 10 kilogram Value And 10 KiloGram When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given10kilogramValueAnd10KiloGram_WhenCompared_ReturnsResult()
         {
@@ -326,6 +393,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given Null And 10 KiloGram When Compared Returns Result
+        /// </summary>
         [Fact]
         public void GivenNullAnd10KiloGram_WhenCompared_ReturnsResult()
         {
@@ -348,6 +418,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 22 Fahrenheit To Celsius And 10 Celsius When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given22FahrenheitToCelsiusAnd10Celsius_WhenCompared_ReturnsResult()
         {
@@ -370,6 +443,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given 150 Celsius And 150 Celsius When Compared Returns Result
+        /// </summary>
         [Fact]
         public void Given150CelsiusAnd150Celsius_WhenCompared_ReturnsResult()
         {
@@ -392,6 +468,9 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given Null And 150 Celsius When Compared Returns Result
+        /// </summary>
         [Fact]
         public void GivenNullAnd150Celsius_WhenCompared_ReturnsResult()
         {
@@ -414,6 +493,40 @@ namespace QuantityMeasurementConvertTest
             }
         }
 
+        /// <summary>
+        /// Test Case of Given Test Case When get Specific Record Returns Result
+        /// </summary>
+        [Fact]
+        public void GivenTestCase_WhengetSpecificRecord_ReturnsResult()
+        {
+            try
+            {
+                
+                var badResult = quantityMeasurementController.GetComparisonById(265);
+                Assert.IsType<BadRequestObjectResult>(badResult);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
+        /// <summary>
+        /// Test Case of Given Test Case When get All Record Returns Result
+        /// </summary>
+        [Fact]
+        public void GivenTestCase_WhengetAllRecord_ReturnsResult()
+        {
+            try
+            {
+
+                var badResult = quantityMeasurementController.GetAllComparison();
+                Assert.IsType<OkObjectResult>(badResult);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
